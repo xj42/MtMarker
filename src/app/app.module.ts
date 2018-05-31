@@ -6,11 +6,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MtMarker } from './app.component';
 import { IndexPage } from '../pages/index/index';
+import { ArviewPage } from '../pages/arview/arview';
+import { BabylonjsProvider } from '../providers/babylonjs/babylonjs';
 
 @NgModule({
   declarations: [
     MtMarker,
-    IndexPage
+    IndexPage,
+    ArviewPage
   ],
   imports: [
     BrowserModule,
@@ -19,12 +22,14 @@ import { IndexPage } from '../pages/index/index';
   bootstrap: [IonicApp],
   entryComponents: [
     MtMarker,
-    IndexPage
+    IndexPage,
+    ArviewPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BabylonjsProvider
   ]
 })
 export class AppModule {}
