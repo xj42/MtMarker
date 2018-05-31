@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { ArviewPage } from '../arview/arview';
 
 @Component({
   selector: 'page-index',
@@ -11,4 +12,7 @@ export class IndexPage {
 
   }
 
+  openARView() {
+    this.navCtrl.push(ArviewPage);
+  }
 }

@@ -1,11 +1,14 @@
 import { Quaternion, ICameraInput, CameraInputTypes, Tools, Nullable } from 'babylonjs';
 import { UserDeviceOrientationCamera } from './babylon.userdeviceOrientationCamera';
+import { Device } from '@ionic-native/device';
+import { AppModule } from '../../app/app.module';
+
 /**
  * Takes information about the orientation of the device as reported by the deviceorientation event to orient the camera.
  * Screen rotation is taken into account.
  */
+
 declare var navigator;
-declare var device;
 
 export class FreeCameraDeviceOrientationFilteredInput implements ICameraInput<UserDeviceOrientationCamera> {
 
@@ -26,11 +29,12 @@ export class FreeCameraDeviceOrientationFilteredInput implements ICameraInput<Us
 	private _watchGyro = null;
 	private _sensorOptions = { frequency: 100 };
 	private _gyro: any;
-
+	private _device: Device;
 	constructor(threshold?: number) {
 		// text
+		this._device = AppModule.injector.get(Device);
 		if (threshold !== undefined) { this._threshold = threshold; }
-		if (device.platform && device.platform.toLowerCase() != 'browser') {
+		if (this._device.platform && this._device.platform.toLowerCase() != 'browser') {
 			this._gyro = navigator.gyroscope;
 		}
 
@@ -69,7 +73,7 @@ export class FreeCameraDeviceOrientationFilteredInput implements ICameraInput<Us
 		window.addEventListener("deviceorientation", this._deviceOrientation);
 		//In certain cases, the attach control is called AFTER orientation was changed,
 		//So this is needed.
-		if (device.platform && device.platform.toLowerCase() != 'browser') {
+		if (this._device.platform && this._device.platform.toLowerCase() != 'browser') {
 
 		var cam = this;
 		this._watchGyro = this._gyro.watch(function (gyro: any) {
@@ -234,7 +238,7 @@ export class FreeCameraDeviceOrientationFilteredInput implements ICameraInput<Us
 	 * @param element
 	 */
 	detachControl(element: Nullable<HTMLElement>) {
-		if (device.platform && device.platform.toLowerCase() != 'browser') {
+		if (this._device.platform && this._device.platform.toLowerCase() != 'browser') {
 			this._gyro.clearWatch(this._watchGyro);
 		}
 		// if (this._platform.toLowerCase() == "android") {
