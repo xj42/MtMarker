@@ -5,6 +5,8 @@ import {
   BackgroundGeolocationConfig,
   BackgroundGeolocationResponse
 } from "@ionic-native/background-geolocation";
+import {Platform} from 'ionic-angular';
+
 
 /*
   Generated class for the ConfigProvider provider.
@@ -18,7 +20,7 @@ export class ConfigProvider {
   public heading: number;
   private GeoConf: BackgroundGeolocationConfig;
   private backgroundGeolocation;
-  constructor(private geo: BackgroundGeolocation) {
+  constructor(private geo: BackgroundGeolocation, private plt:Platform) {
     this.GeoConf = {
       desiredAccuracy: 10,
       stationaryRadius: 20,
@@ -35,7 +37,8 @@ export class ConfigProvider {
         // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
         // and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
         // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
-        this.backgroundGeolocation.finish(); // FOR IOS ONLY
+		if (plt.is('ios'))
+			this.backgroundGeolocation.finish(); // FOR IOS ONLY
       });
   }
 
