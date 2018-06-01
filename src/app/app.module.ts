@@ -37,6 +37,7 @@ import { ConfigProvider } from '../providers/config/config';
     ConfigProvider
   ]
 })
+
 export class AppModule {
   static injector: Injector;
   constructor(injector: Injector) {

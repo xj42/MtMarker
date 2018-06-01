@@ -21,9 +21,9 @@
     "@angular/http": "5.2.10",
     "@angular/platform-browser": "5.2.10",
     "@angular/platform-browser-dynamic": "5.2.10",
+    "@ionic-native/background-geolocation": "^4.7.0",
     "@ionic-native/core": "4.7.0",
     "@ionic-native/device": "^4.7.0",
-    "@ionic-native/geolocation": "^4.7.0",
     "@ionic-native/gyroscope": "^4.7.0",
     "@ionic-native/splash-screen": "4.7.0",
     "@ionic-native/status-bar": "4.7.0",
@@ -34,8 +34,8 @@
     "cordova-ios": "4.5.4",
     "cordova-plugin-camera-preview": "git+https://github.com/cordova-plugin-camera-preview/cordova-plugin-camera-preview.git",
     "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-gyroscope": "git+https://github.com/NeoLSN/cordova-plugin-gyroscope.git",
+    "cordova-plugin-mauron85-background-geolocation": "git+https://github.com/mauron85/cordova-plugin-background-geolocation.git",
     "cordova-plugin-screen-orientation": "git+https://github.com/apache/cordova-plugin-screen-orientation.git",
     "cordova-plugin-statusbar": "^2.4.2",
     "ionic-angular": "3.9.2",
@@ -51,14 +51,12 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-geolocation": {
-        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
-      },
       "cordova-plugin-gyroscope": {},
       "cordova-plugin-camera-preview": {},
       "cordova-plugin-screen-orientation": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-mauron85-background-geolocation": {}
     }
   }
 }
