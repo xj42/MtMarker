@@ -1,6 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Mountain } from "../../classes/Mountain";
+import { GPSPoint } from "../../classes/GPSPoint";
+import { ConfigProvider } from '../config/config';
 
 /*
   Generated class for the MountainsProvider provider.
@@ -10,8 +12,10 @@ import { Mountain } from "../../classes/Mountain";
 */
 @Injectable()
 export class MountainsProvider {
+
   public mountains: Mountain[] = [];
-  constructor(public http: HttpClient) {}
+
+  constructor(public http: HttpClient, private conf:ConfigProvider) {}
 
   update() {}
 

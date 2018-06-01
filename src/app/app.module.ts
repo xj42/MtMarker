@@ -10,6 +10,7 @@ import { Device } from '@ionic-native/device';
 import { IndexPage } from '../pages/index/index';
 import { ArviewPage } from '../pages/arview/arview';
 import { MountainsProvider } from '../providers/mountains/mountains';
+import { ConfigProvider } from '../providers/config/config';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MountainsProvider } from '../providers/mountains/mountains';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Device,
-    MountainsProvider
+    MountainsProvider,
+    ConfigProvider
   ]
 })
 export class AppModule {
