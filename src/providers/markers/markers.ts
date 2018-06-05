@@ -34,7 +34,7 @@ export class MarkerProvider {
       .then(data => {
         for (var i in data) {
           this.locationMarkers.push(
-            new Marker(data[i].location, data[i].name, data[i].desc)
+            new Marker(data[i])
           );
           console.log(data[i]);
         }

@@ -6,7 +6,7 @@ export class Marker {
   private _description: string ="";
   private _labelImage: string ="";
 
-  constructor(data) {
+  constructor(data:any) {
     this._location = new GPSPoint(
       data.location.lat,
       data.location.lng,

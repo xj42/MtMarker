@@ -38,7 +38,7 @@ export class BabylonMarker {
    * @param callback
    */
   addLabel(texture: AdvancedDynamicTexture, callback: Function) {
-    if (this._marker.getlabelImg() != "") {
+    if (this._marker.getlabelImg() == "") {
       this._GUIbutton = Button.CreateImageOnlyButton(
         "GUIbutton",
         this._marker.getlabelImg()
