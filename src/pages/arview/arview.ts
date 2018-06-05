@@ -43,15 +43,7 @@ export class ArviewPage {
     this.mnt.update().subscribe(data => {
       this._mountains = [];
       for (var i in data) {
-        let m = new Marker(
-          new GPSPoint(
-            data[i].location.lat,
-            data[i].location.lng,
-            data[i].location.alt
-          ),
-          data[i].name,
-          data[i].desc
-        );
+        let m = new Marker(data[i]);
 
         this._mountains.push(m);
 	  }

@@ -10,12 +10,12 @@ export class BabylonMarker {
   private _GUIbutton: Button;
   private _config: ConfigProvider;
 
-  constructor(private marker: Marker, private scene: Scene) {
+  constructor(private _marker: Marker, private _scene: Scene) {
     this._config = AppModule.injector.get(ConfigProvider);
     this._mesh = MeshBuilder.CreateSphere(
       "sphere",
       { diameter: 1 },
-      this.scene
+      this._scene
     );
 
     this._mesh.position = Vector3.Zero();
@@ -23,7 +23,7 @@ export class BabylonMarker {
     /**
      * Material
      */
-    this._material = new StandardMaterial("markerMaterial", this.scene);
+    this._material = new StandardMaterial("markerMaterial", this._scene);
     this._material.emissiveColor = BABYLON.Color3.White();
     this._material.freeze();
 
@@ -32,11 +32,24 @@ export class BabylonMarker {
     this._mesh.isPickable = false;
   }
 
+  /**
+   * Add a label
+   * @param texture
+   * @param callback
+   */
   addLabel(texture: AdvancedDynamicTexture, callback: Function) {
-    this._GUIbutton = Button.CreateSimpleButton(
-      "GUIbutton",
-      this.marker.getName()
-    );
+    if (this._marker.getlabelImg() != "") {
+      this._GUIbutton = Button.CreateImageOnlyButton(
+        "GUIbutton",
+        this._marker.getlabelImg()
+      );
+    } else {
+      this._GUIbutton = Button.CreateSimpleButton(
+        "GUIbutton",
+        this._marker.getName()
+      );
+    }
+
     this._GUIbutton.linkOffsetY = 10;
 
     // this._GUIbutton.width = this._config.labelWidth;
@@ -55,7 +68,7 @@ export class BabylonMarker {
     this._GUIbutton.linkWithMesh(this._mesh);
 
     this._GUIbutton.onPointerDownObservable.add(() => {
-      callback.call(callback, this.marker);
+      callback.call(callback, this._marker);
     });
   }
 }
