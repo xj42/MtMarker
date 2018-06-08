@@ -9,27 +9,29 @@ import { Device } from "@ionic-native/device";
 import { HTTP } from "@ionic-native/http";
 import { IndexPage } from "../pages/index/index";
 import { ArviewPage } from "../pages/arview/arview";
+import { VrviewPage } from "../pages/vrview/vrview";
 import { MarkerProvider } from "../providers/markers/markers";
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from "@angular/common/http";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
+import { Video360Page } from "../pages/video360/video360";
 
 import { ConfigProvider } from "../providers/config/config";
-import {
-	BackgroundGeolocation
-  } from "@ionic-native/background-geolocation";
+import { BackgroundGeolocation } from "@ionic-native/background-geolocation";
 @NgModule({
-  declarations: [MtMarker, IndexPage, ArviewPage],
-  imports: [BrowserModule, IonicModule.forRoot(MtMarker),HttpClientModule],
+  declarations: [MtMarker, IndexPage, ArviewPage, VrviewPage,Video360Page],
+  imports: [BrowserModule, IonicModule.forRoot(MtMarker), HttpClientModule],
   bootstrap: [IonicApp],
-  entryComponents: [MtMarker, IndexPage, ArviewPage],
+  entryComponents: [MtMarker, IndexPage, ArviewPage, VrviewPage, Video360Page],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Device,
     MarkerProvider,
+    ScreenOrientation,
     ConfigProvider,
-	HTTP,
-	BackgroundGeolocation
+    HTTP,
+    BackgroundGeolocation
   ]
 })
 export class AppModule {

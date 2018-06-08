@@ -14,37 +14,37 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class MarkerProvider {
-  public locationMarkers: Marker[] = [];
-  mtn: Observable<any>;
-  constructor(
-    public http: HTTP,
-    private conf: ConfigProvider,
-    public httpClient: HttpClient
-  ) {
-    this.update();
-  }
+    public locationMarkers: Marker[] = [];
+    mtn: Observable<any>;
+    constructor(
+        public http: HTTP,
+        private conf: ConfigProvider,
+        public httpClient: HttpClient
+    ) {
+        this.update();
+    }
 
-  update() {
-    this.http
-      .get(
-        "http://demo.wise-p.co.jp/drewbell/pos.json?" + this.conf.category,
-        {},
-        {}
-      )
-      .then(data => {
-        for (var i in data) {
-          this.locationMarkers.push(
-            new Marker(data[i])
-          );
-          console.log(data[i]);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    update() {
+        // this.http
+        //     .get(
+        //         "http://demo.wise-p.co.jp/drewbell/pos.json?" + this.conf.category,
+        //         {},
+        //         {}
+        //     )
+        //     .then(data => {
+        //         for (var i in data) {
+        //             this.locationMarkers.push(
+        //                 new Marker(data[i])
+        //             );
+        //             console.log(data[i]);
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
 
-    return this.httpClient.get(
-      "http://demo.wise-p.co.jp/drewbell/mountains.json"
-    );
-  }
+        return this.httpClient.get("http://demo.wise-p.co.jp/drewbell/mountains.json");
+    }
+
+
 }

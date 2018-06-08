@@ -4,7 +4,10 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { Game } from "../../classes/Game";
 import { MarkerProvider } from "../../providers/markers/markers";
 import { Marker } from "../../classes/Marker";
-import { GPSPoint } from "../../classes/GPSPoint";
+import { Platform } from "ionic-angular";
+
+import { Device } from "@ionic-native/device";
+import { ScreenOrientation } from "@ionic-native/screen-orientation";
 
 /**
  * Generated class for the ArviewPage page.
@@ -26,8 +29,29 @@ export class ArviewPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public mnt: MarkerProvider
+	public mnt: MarkerProvider,
+	private device: Device,
+    private screenOrientation: ScreenOrientation,
+    private platform: Platform
   ) {}
+
+  ionViewWillEnter() {
+    if (
+      this.device.platform &&
+      this.device.platform.toLowerCase() != "browser"
+    ) {
+      this.screenOrientation.unlock();
+      this.screenOrientation.lock(
+        this.screenOrientation.ORIENTATIONS.LANDSCAPE
+      );
+    }
+  }
+  ionViewWillLeave(){
+	  this._game.stop();
+	delete this._game;
+	console.log("deleted");
+
+  }
 
   ionViewDidLoad() {
     this._game = new Game("renderCanvas");

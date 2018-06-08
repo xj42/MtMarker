@@ -50,7 +50,6 @@ export class BabylonMarker {
       );
     }
 
-    this._GUIbutton.linkOffsetY = 10;
 
     // this._GUIbutton.width = this._config.labelWidth;
     // this._GUIbutton.height = this._config.labelHeight;
@@ -66,6 +65,7 @@ export class BabylonMarker {
 
     // link it to the marker
     this._GUIbutton.linkWithMesh(this._mesh);
+    this._GUIbutton.linkOffsetY =     this._GUIbutton.height;
 
     this._GUIbutton.onPointerDownObservable.add(() => {
       callback.call(callback, this._marker);
