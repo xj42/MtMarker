@@ -17,8 +17,9 @@ import { Video360Page } from "../pages/video360/video360";
 
 import { ConfigProvider } from "../providers/config/config";
 import { BackgroundGeolocation } from "@ionic-native/background-geolocation";
+
 @NgModule({
-  declarations: [MtMarker, IndexPage, ArviewPage, VrviewPage,Video360Page],
+  declarations: [MtMarker, IndexPage, ArviewPage, VrviewPage, Video360Page],
   imports: [BrowserModule, IonicModule.forRoot(MtMarker), HttpClientModule],
   bootstrap: [IonicApp],
   entryComponents: [MtMarker, IndexPage, ArviewPage, VrviewPage, Video360Page],

@@ -3,6 +3,7 @@ import { NavController } from "ionic-angular";
 import { ArviewPage } from "../arview/arview";
 import { VrviewPage } from "../vrview/vrview";
 import { Video360Page } from "../video360/video360";
+import { AboutPage } from "../about/about";
 
 @Component({
   selector: "page-index",
@@ -11,6 +12,10 @@ import { Video360Page } from "../video360/video360";
 
 export class IndexPage {
   constructor(public navCtrl: NavController) {}
+
+  openAbout() {
+    this.navCtrl.push(AboutPage);
+  }
 
   openARView() {
     this.navCtrl.push(ArviewPage);
