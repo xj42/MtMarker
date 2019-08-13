@@ -1,7 +1,7 @@
 image: beevelop/ionic:latest
 
 stages:
-  - build
+  - test
 
 cache:
   untracked: true
@@ -10,7 +10,7 @@ cache:
     - node_modules/
 
 build_android:
-  stage: build
+  stage: test
   only:
     - develop
   script:
