@@ -12,7 +12,7 @@ cache:
 build_android:
   stage: test
   only:
-    - develop
+    - master
   script:
     - ls
     - npm i
