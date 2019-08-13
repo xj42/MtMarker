@@ -1,49 +1,25 @@
-image: marcoturi/ionic:latest
+image: beevelop/ionic:latest
 
 stages:
-  - test
-  - deploy
-
-before_script:
-  - yarn config set cache-folder .yarn
-  - yarn
+  - build
 
 cache:
   untracked: true
   key: "$CI_PROJECT_ID"
   paths:
     - node_modules/
-    - .yarn
-
-build_web:
-  stage: test
-  only:
-      - master
-  script:
-    - npm run lint
-    - npm run scss-lint
-    - npm run test
-    - npm run build
-    - npm run e2e
-
-build_ios:
-  stage: deploy
-  only:
-    - release
-  script:
-    - ./sh/ionic-login.sh
-    - ls
-    - npm run ios:release:ci
-    - ./sh/ionic-package-ios.sh
 
 build_android:
-  stage: deploy
+  stage: build
   only:
-    - release
+    - develop
   script:
     - ls
-    - npm run android:release
+    - npm i
+    - ionic cordova platform rm android
+    - ionic cordova platform add android
+    - ionic cordova build android
     - ls ./platforms/android/build/outputs/apk/android*.apk
   artifacts:
     paths:
-      - platforms/android/build/outputs/apk/
+      - platforms/android/build/outputs/apk
